@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "TodoItem": "/components/TodoItem/TodoItem"
+  }
+}

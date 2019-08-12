@@ -1,0 +1,41 @@
+/* pages/index/index.wxss */
+/* 新增待办样式 */
+.creater {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20rpx
+}
+.creater button{
+  margin: 0px;
+  color: #7ED321;
+}
+.creater .input-group {
+  flex: 1;
+  /* padding: 30rpx; */
+  border: 1rpx solid #ccc;
+  box-shadow: 0px 0px 10px #dfdfdf;
+  display: flex;
+  padding: 10rpx;
+  align-items: center;
+}
+.creater .input-group .icon-create {
+  width: 50rpx;
+  margin-right: 10rpx;
+  color: #7ED321;
+  font-size: 50rpx;
+  font-weight: bold;
+}
+/* 待办列表样式 */
+.todolist {
+  border: 1rpx solid #ccc;
+  box-shadow: 0px 0px 10px #dfdfdf;
+  min-height: 20rpx
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 30rpx 0;
+  padding: 0 10rpx;
+  font-size: 28rpx;
+  color: #9B9B9B;
+}

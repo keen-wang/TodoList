@@ -1,0 +1,33 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="creater">
+    <view class="input-group">
+      <view class="icon-create">+</view>
+      <input value="{{inputValue}}" 
+        placeholder="快速添加..."
+        bindinput="inputTodo"
+        bindconfirm="addTodo"
+        focus ></input>
+    </view>
+    <button bindtap="addTodo">添加待办</button>
+  </view>
+  <block wx:if="{{ todolist.length }}">
+    <view class="todolist">
+      <TodoItem wx:for="{{ todolist }}" 
+        wx:key="id" 
+        content="{{ item.content }}"
+        tags="{{ item.tags }}"
+        extra="{{ item.extra }}"
+        finished="{{ item.finished }}"
+        data-index="{{ index }}"
+        bindtap="toggleStatus"
+        binditemRemove="removeItem"
+        ></TodoItem>
+    </view>
+    <view class="footer">
+      <text wx:if="{{ allSetting }}" class="btn" bindtap="toggleAll">{{ leftCount === 0 ? '全部重启' : '全部完成' }}</text>
+      <text wx:if="{{ leftCount }}">{{ leftCount }}项未完成</text>
+      <text class="btn" wx:if="{{ (todolist.length > leftCount)&&clearSetting }}" bindtap="clearFinished">清空所有已完成</text>
+    </view>
+  </block>
+</view>
