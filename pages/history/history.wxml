@@ -1,2 +1,40 @@
-<!--pages/history/history.wxml-->
-<text>pages/history/history.wxml</text>
+<view class="container">
+  <block wx:if="{{ dates.length }}">
+    <block wx:for="{{ dates }}" wx:for-item="date" wx:key="index">
+      <view class="date">{{ date }}</view>
+      <view wx:for="{{ groupedHistory[date] }}" wx:key="index" class="history-item">
+        <!-- <block wx:if="{{ item.action == 'create' || item.action == 'finish' || item.action == 'restart' || item.action == 'delete' }}"> 判断是否为批量处理-->
+        <!-- 单个处理的展示 -->
+        <block wx:if="{{ !!item.todo }}">
+          <!-- 是否显示时间 -->
+          <view wx:if="{{ timeSetting }}" class="action-with-time">
+            <view class="action-icon {{ item.action }}">{{ actionMap[item.action] }}</view>
+            <view class="time">{{ item.time }}</view>
+          </view>
+          <view wx:else class="action-icon {{ item.action }}">{{ actionMap[item.action] }}</view>
+          <!-- todo事件内容 -->
+          <TodoItem class="todo"
+            content="{{ item.todo.content }}"
+            tags="{{ item.todo.tags }}"
+            action="{{ item.action }}"
+            data-index="{{ item.index }}"
+            binditemRemove="removeItem">
+          </TodoItem>
+        </block>
+        <!-- 批量处理的展示 -->
+        <block wx:else>
+          <view class="action {{ item.action }}">
+            <text>{{ actionMap[item.action] }}</text>
+            <icon type="clear" size="16" data-index="{{ item.index }}" catchtap="removeItem" />
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="empty">
+      <text class="title">暂无历史数据</text>
+      <text class="content">请您前往「待办」添加待办事项</text>
+    </view>
+  </block>
+</view>

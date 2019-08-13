@@ -19,7 +19,7 @@ Page({
       },0);
       this.setData({ todolist, leftCount });
     }
-
+    // 获取配置项
     // ['allSetting', 'clearSetting'].forEach(item=>{
     //   var setting = wx.getStorageSync(item);
     //   console.log(item, setting, wx.getStorageSync(item))
@@ -29,7 +29,6 @@ Page({
     // })
   },
   inputTodo: function (e) {
-    // console.log('onItemRemove', e, this.data.inputValue);
     // 双线数据绑定
     this.setData({ inputValue: e.detail.value });
   },
@@ -37,13 +36,14 @@ Page({
     // console.log('addtodo', e);
     if (!this.data.inputValue || !this.data.inputValue.trim()) return;
     var todolist = this.data.todolist;
-    var todo = { content: this.data.inputValue, finished: false, id: +new Date() };
+    var todo = { content: this.data.inputValue,tags: [], extra: '' };
     todolist.push(todo);
     this.save({
       inputValue: '',
       todolist,
       leftCount: this.data.leftCount + 1
     });
+    getApp().writeHistory(todo, 'create');
     // getApp().writeHistory(todo, 'create', +new Date());
     // console.log('addtodo', e);
   },
@@ -55,6 +55,7 @@ Page({
       todolist,
       leftCount: this.data.leftCount - (removedItem.finished ? 0 : 1)
     });
+    getApp().writeHistory(removedItem, 'delete');
 
   },
   toggleStatus(e) {
@@ -65,6 +66,7 @@ Page({
       todolist,
       leftCount: this.data.leftCount + (todolist[index].finished ? -1 : 1)
     });
+    getApp().writeHistory(todolist[index], todolist[index].finished ? 'finish' : 'restart');
   },
   toggleAll(e) {
     if(this.data.leftCount !== 0) {
@@ -75,12 +77,14 @@ Page({
       var leftCount = this.data.todolist.length;
     }
     this.save({ todolist, leftCount})
+    getApp().writeHistory(null, this.data.leftCount === 0 ? 'finishAll' : 'restartAll')
   },
   clearFinished(e) {
     var notFinishedList = this.data.todolist.filter(item=>!item.finished)
     this.save({
       todolist: notFinishedList
     })
+    getApp().writeHistory(null, 'clear');
   },
   // 更新数据并保存到本地缓存
   save (data={}) {

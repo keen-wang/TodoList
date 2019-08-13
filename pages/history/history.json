@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "Todo 历史",
-  "usingComponents": {}
+  "usingComponents": {
+    "TodoItem": "/components/TodoItem/TodoItem"
+  }
 }
