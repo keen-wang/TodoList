@@ -87,4 +87,9 @@ Page({
     this.setData(data);
     wx.setStorageSync('todolist', this.data.todolist);
   },
+  toCreateDetail (e) {
+    wx.navigateTo({
+      url: '/pages/detail/detail',
+    })
+  }
 })

@@ -9,7 +9,7 @@
         bindconfirm="addTodo"
         focus ></input>
     </view>
-    <button bindtap="addTodo">添加待办</button>
+    <button bindtap="toCreateDetail">添加待办</button>
   </view>
   <block wx:if="{{ todolist.length }}">
     <scroll-view scroll-y class="todolist">

@@ -8,6 +8,8 @@
 .item {
   display: flex;
   align-items: center;
+  
+  border-bottom: 1px solid #ccc;
 }
 
 .item:last-child {
@@ -56,9 +58,10 @@
 }
 
 .extra-detail {
-  padding: 15rpx 5px 0;
+  padding: 15rpx 5px 0 30rpx;
   font-size: 28rpx;
   color: #9B9B9B;
+  border-bottom: 1px solid #ccc;
 }
 
 .extra-detail textarea {

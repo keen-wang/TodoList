@@ -1,0 +1,26 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+  <view class="section">
+    <input placeholder="待办内容..." bindinput="inputValue" data-key="todo" focus />
+  </view>
+  <view class="tags" wx:if="{{ tags.length }}">
+    <view class="tag" wx:for="{{ tags }}" wx:key="index">
+      <text class="txt">{{ item }}</text>
+      <icon class="remove" type="clear" size="16" data-index="{{ index }}" bindtap="removeTag"/>
+    </view>
+  </view>
+  <view class="section">
+    <input 
+      placeholder="{{tags.length<3?'添加标签...':'最多添加三个标签'}}" 
+      value="{{ tag }}" 
+      data-key="tag" 
+      bindconfirm="addTag" 
+      bindinput="inputValue" 
+      disabled="{{tags.length >= 3}}"/>
+  </view>
+  <view class="section">
+    <text>备注：</text>
+    <textarea bindinput="inputValue" data-key="extra" auto-height="true" />
+  </view>
+  <button type="primary" bindtap="createTodo"> 创 建 </button>
+</view>
