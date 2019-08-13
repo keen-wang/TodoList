@@ -1,7 +1,6 @@
 //app.js
 App({
-  onLaunch(options) {
-    // Do something initial when launch.
+  onLaunch (options) {
   },
   // 保存操作历史记录，记录事项、行为、时间
   writeHistory (todo, action) {

@@ -1,2 +1,17 @@
 <!--pages/profile/profile.wxml-->
-<text>pages/profile/profile.wxml</text>
+<view class="container">
+  <view class="avatar">
+    <open-data class=".image" type="userAvatarUrl"></open-data>
+  </view>
+  <view class="name">
+    <open-data type="userNickName"></open-data>
+  </view>
+  <view class="item" data-target="user" bindtap="navTo">
+    <text>个人信息</text>
+    <text>></text>
+  </view>
+  <view class="item" data-target="setting" bindtap="navTo">
+    <text>设置</text>
+    <text>></text>
+  </view>
+</view>
