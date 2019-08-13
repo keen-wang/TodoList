@@ -12,7 +12,7 @@
     <button bindtap="addTodo">添加待办</button>
   </view>
   <block wx:if="{{ todolist.length }}">
-    <view class="todolist">
+    <scroll-view scroll-y class="todolist">
       <TodoItem wx:for="{{ todolist }}" 
         wx:key="id" 
         content="{{ item.content }}"
@@ -23,11 +23,17 @@
         bindtap="toggleStatus"
         binditemRemove="removeItem"
         ></TodoItem>
-    </view>
+    </scroll-view>
     <view class="footer">
       <text wx:if="{{ allSetting }}" class="btn" bindtap="toggleAll">{{ leftCount === 0 ? '全部重启' : '全部完成' }}</text>
       <text wx:if="{{ leftCount }}">{{ leftCount }}项未完成</text>
       <text class="btn" wx:if="{{ (todolist.length > leftCount)&&clearSetting }}" bindtap="clearFinished">清空所有已完成</text>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="empty">
+      <text class="title">Good job!</text>
+      <text class="content">已处理完所有待办事项，快通过上方操作栏添加新的事项。</text>
     </view>
   </block>
 </view>

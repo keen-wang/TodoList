@@ -29,7 +29,8 @@
 .todolist {
   border: 1rpx solid #ccc;
   box-shadow: 0px 0px 10px #dfdfdf;
-  min-height: 20rpx
+  max-height: 700rpx;
+  /* overflow: scroll */
 }
 .footer {
   display: flex;
@@ -38,4 +39,22 @@
   padding: 0 10rpx;
   font-size: 28rpx;
   color: #9B9B9B;
+}
+/* // 待办事项为空是显示提示的样式 */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty .title {
+  font-size: 50rpx;
+  margin: 200rpx 50rpx 50rpx;
+  color: #9B9B9B;
+}
+
+.empty .content {
+  color: #DDD;
+  text-align: center;
 }
